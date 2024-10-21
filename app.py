@@ -1,5 +1,7 @@
 from flask import Flask
 import pandas as pd
+from helper_functions import create_base_encoding 
+
 app = Flask(__name__)
 
 @app.route('/')
