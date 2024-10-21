@@ -4,7 +4,7 @@ import pandas as pd
 
 def create_base_encoding():
   # Initialize the pre-trained model
-  df=pd.read_pickle('df_embedded.pkl')
+  df=pd.read_pickle('df_embedded 1.pkl')
   df['Intermediate Description']=df['Idea Title Statement']+". "+df['Summarized Idea']
   model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
