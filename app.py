@@ -4,4 +4,4 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return str(pd.__version__)
+    return "Hello World :)"
