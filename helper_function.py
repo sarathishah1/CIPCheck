@@ -13,6 +13,9 @@ def create_base_encoding():
   # statements = df['Intermediate Description'].tolist()
   # # Compute embeddings Afor all sentences
   # statement_embeddings = model.encode(statements)
+  np_load_old = np.load
+  # modify the default parameters of np.load
+  np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
   statement_embeddings=np.load('embeddings.npy')
   return statement_embeddings
 
