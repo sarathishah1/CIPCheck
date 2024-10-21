@@ -1,4 +1,5 @@
 Flask
 Gunicorn
 pandas
+numpy
 sentence-transformers
