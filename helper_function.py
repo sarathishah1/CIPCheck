@@ -1,12 +1,11 @@
-
 from sentence_transformers import SentenceTransformer, util
 import pandas as pd
 
 
-df=pd.read_pickle('df_embedded.pkl')
-df['Intermediate Description']=df['Idea Title Statement']+". "+df['Summarized Idea']
 def create_base_encoding():
   # Initialize the pre-trained model
+  df=pd.read_pickle('df_embedded.pkl')
+  df['Intermediate Description']=df['Idea Title Statement']+". "+df['Summarized Idea']
   model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
   # Define the predefined statements
@@ -15,7 +14,6 @@ def create_base_encoding():
   statement_embeddings = model.encode(statements)
   return statement_embeddings
 
-baseencoding=create_base_encoding()
 def create_input_encoding(input_statement):
   # Initialize the pre-trained model
   model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
