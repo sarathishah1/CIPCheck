@@ -19,7 +19,7 @@ def create_base_encoding():
   statement_embeddings=np.load('embeddings.npy')
   return statement_embeddings
 
-def create_input_encoding(input_statement):
+def create_input_encoding(input_statement,baseencoding):
   # Initialize the pre-trained model
   model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
