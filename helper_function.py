@@ -16,8 +16,8 @@ def create_base_encoding():
   # np_load_old = np.load
   # # modify the default parameters of np.load
   # np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
-  statement_embeddings=np.load('embeddings.npy',allow_pickle=True)
-  statement_embeddings = statement_embeddings.astype(np.float32)
+  statement_embeddings=np.load('base_encoding.npy',allow_pickle=True)
+  #statement_embeddings = statement_embeddings.astype(np.float32)
   return statement_embeddings
 
 def create_input_encoding(input_statement,baseencoding):
