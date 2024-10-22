@@ -15,7 +15,7 @@ def search_duplicate():
     df=pd.read_pickle("df_embedded 1.pkl")
     df['Intermediate Description']=df['Idea Title Statement']+". "+df['Summarized Idea']
     x=create_input_encoding(query,baseencoding)
-    #results=generate_output(x,df['Intermediate Description'].tolist())
+    results=generate_output(x,df['Intermediate Description'].tolist())
     #return jsonify(results=results)
     return "Hello World"
     
