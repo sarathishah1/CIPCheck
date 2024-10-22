@@ -13,5 +13,6 @@ def search_duplicate():
     query = request.json.get('query')
     baseencoding=create_base_encoding()
     results=generate_output(create_input_encoding(query),baseencoding)
-    return "Hello World"
+    return jsonify(results=results)
+    #return "Hello World"
     
