@@ -10,6 +10,8 @@ def hello_world():
 
 @app.route("/cipcheck",methods=['POST'])
 def search_duplicate():
+    query = request.json.get('query')
     baseencoding=create_base_encoding()
+    results=generate_output(create_input_encoding(x),df['Intermediate Description'].tolist())
     return "Hello World"
     
