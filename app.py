@@ -12,6 +12,6 @@ def hello_world():
 def search_duplicate():
     query = request.json.get('query')
     baseencoding=create_base_encoding()
-    results=generate_output(create_input_encoding(x),df['Intermediate Description'].tolist())
+    results=generate_output(create_input_encoding(query),baseencoding)
     return "Hello World"
     
