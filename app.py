@@ -16,6 +16,6 @@ def search_duplicate():
     df['Intermediate Description']=df['Idea Title Statement']+". "+df['Summarized Idea']
     x=create_input_encoding(query,baseencoding)
     results=generate_output(x,df['Intermediate Description'].tolist())
-    #return jsonify(results=results)
-    return "Hello World"
+    return jsonify(results=results)
+    #return "Hello World"
     
