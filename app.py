@@ -1,6 +1,6 @@
 from flask import Flask,request,jsonify
 import pandas as pd
-from helper_function import create_base_encoding,generate_output
+from helper_function import create_base_encoding,generate_output,create_input_encoding
 
 app = Flask(__name__)
 
