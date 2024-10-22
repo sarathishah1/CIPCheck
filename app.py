@@ -12,7 +12,9 @@ def hello_world():
 def search_duplicate():
     query = request.json.get('query')
     baseencoding=create_base_encoding()
-    results=generate_output(create_input_encoding(query),baseencoding)
+    df=pd.read_pickle("df_embedded 1.pkl")
+    df['Intermediate Description']=df['Idea Title Statement']+". "+df['Summarized Idea']
+    results=generate_output(create_input_encoding(query,baseencoding),df['Intermediate Description'].tolist())
     return jsonify(results=results)
     #return "Hello World"
     
