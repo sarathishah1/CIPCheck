@@ -2,7 +2,8 @@ from sentence_transformers import SentenceTransformer, util
 import pandas as pd
 import numpy as np
 import base64
-
+from azure.identity import ClientSecretCredential
+from azure.storage.blob import BlobServiceClient
 
 TENANT_ID = "ZTRkOThkZDItOTE5OS00MmU1LWJhOGItZGEzZTc2M2VkZTJl"
 CLIENT_ID = "NjY1NTA1ODctOTE5NC00NWIxLTg1MDktZjY2MDczNDNjYTlh"
