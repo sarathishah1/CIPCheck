@@ -5,27 +5,24 @@ import base64
 from azure.identity import ClientSecretCredential
 from azure.storage.blob import BlobServiceClient
 
-TENANT_ID = "ZTRkOThkZDItOTE5OS00MmU1LWJhOGItZGEzZTc2M2VkZTJl"
-CLIENT_ID = "NjY1NTA1ODctOTE5NC00NWIxLTg1MDktZjY2MDczNDNjYTlh"
-CLIENT_SECRET="bS4yOFF+WDFpeVZ1U3NNOUYtRGVqODFNUDZQTlJxRHdsVV9wd2Jaag=="
-
-STORAGE_ACCOUNT_NAME = "bWFxcmVzdW1lcw=="
-CONTAINER_NAME = "Y2lwaWRlYXNkYXRh"
-FileName="CIP Idea List.csv"
 
 
-credential = ClientSecretCredential(
+def create_base_encoding():
+  TENANT_ID = "ZTRkOThkZDItOTE5OS00MmU1LWJhOGItZGEzZTc2M2VkZTJl"
+  CLIENT_ID = "NjY1NTA1ODctOTE5NC00NWIxLTg1MDktZjY2MDczNDNjYTlh"
+  CLIENT_SECRET="bS4yOFF+WDFpeVZ1U3NNOUYtRGVqODFNUDZQTlJxRHdsVV9wd2Jaag=="
+  STORAGE_ACCOUNT_NAME = "bWFxcmVzdW1lcw=="
+  CONTAINER_NAME = "Y2lwaWRlYXNkYXRh"
+  credential = ClientSecretCredential(
     tenant_id=base64.b64decode(TENANT_ID.encode('utf-8')).decode('utf-8'),
     client_id=base64.b64decode(CLIENT_ID.encode('utf-8')).decode('utf-8'),
     client_secret=base64.b64decode(CLIENT_SECRET.encode('utf-8')).decode('utf-8')
-)
-
-blob_service_client = BlobServiceClient(
+    )
+  blob_service_client = BlobServiceClient(
     account_url=f"https://{base64.b64decode(STORAGE_ACCOUNT_NAME.encode('utf-8')).decode('utf-8')}.blob.core.windows.net",
     credential=credential
-)
-
-def create_base_encoding():
+    )
+  FileName="CIP Idea List.csv"
   blob_client = blob_service_client.get_blob_client(container=base64.b64decode(CONTAINER_NAME.encode('utf-8')).decode('utf-8'), blob="base_encoding.npy")
   blob_data = blob_client.download_blob().readall()
   buffer = io.BytesIO(blob_data)
