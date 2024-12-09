@@ -4,6 +4,7 @@ import numpy as np
 import base64
 from azure.identity import ClientSecretCredential
 from azure.storage.blob import BlobServiceClient
+import io
 
 
 
