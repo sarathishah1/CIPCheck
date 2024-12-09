@@ -1,23 +1,34 @@
 from sentence_transformers import SentenceTransformer, util
 import pandas as pd
 import numpy as np
+import base64
 
+
+TENANT_ID = "ZTRkOThkZDItOTE5OS00MmU1LWJhOGItZGEzZTc2M2VkZTJl"
+CLIENT_ID = "NjY1NTA1ODctOTE5NC00NWIxLTg1MDktZjY2MDczNDNjYTlh"
+CLIENT_SECRET="bS4yOFF+WDFpeVZ1U3NNOUYtRGVqODFNUDZQTlJxRHdsVV9wd2Jaag=="
+
+STORAGE_ACCOUNT_NAME = "bWFxcmVzdW1lcw=="
+CONTAINER_NAME = "Y2lwaWRlYXNkYXRh"
+FileName="CIP Idea List.csv"
+
+
+credential = ClientSecretCredential(
+    tenant_id=base64.b64decode(TENANT_ID.encode('utf-8')).decode('utf-8'),
+    client_id=base64.b64decode(CLIENT_ID.encode('utf-8')).decode('utf-8'),
+    client_secret=base64.b64decode(CLIENT_SECRET.encode('utf-8')).decode('utf-8')
+)
+
+blob_service_client = BlobServiceClient(
+    account_url=f"https://{base64.b64decode(STORAGE_ACCOUNT_NAME.encode('utf-8')).decode('utf-8')}.blob.core.windows.net",
+    credential=credential
+)
 
 def create_base_encoding():
-  # Initialize the pre-trained model
-  # df=pd.read_pickle('df_embedded 1.pkl')
-  # df['Intermediate Description']=df['Idea Title Statement']+". "+df['Summarized Idea']
-  # model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
-
-  # # Define the predefined statements
-  # statements = df['Intermediate Description'].tolist()
-  # # Compute embeddings Afor all sentences
-  # # statement_embeddings = model.encode(statements)
-  # np_load_old = np.load
-  # # modify the default parameters of np.load
-  # np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
-  statement_embeddings=np.load('base_encoding.npy',allow_pickle=True)
-  #statement_embeddings = statement_embeddings.astype(np.float32)
+  blob_client = blob_service_client.get_blob_client(container=base64.b64decode(CONTAINER_NAME.encode('utf-8')).decode('utf-8'), blob="base_encoding.npy")
+  blob_data = blob_client.download_blob().readall()
+  buffer = io.BytesIO(blob_data)
+  statement_embeddings=np.load(buffer,allow_pickle=True)
   return statement_embeddings
 
 def create_input_encoding(input_statement,baseencoding):
