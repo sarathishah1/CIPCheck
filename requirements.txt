@@ -3,3 +3,5 @@ Gunicorn
 pandas
 numpy
 sentence-transformers
+azure-storage-blob
+azure-identity
